@@ -1,5 +1,6 @@
 FROM tomcat
 RUN apt update
+RUN apt install tomcat9 -y
 RUN apt install maven default-jdk -y
 RUN apt install default-jdk -y
 RUN apt install git -y
