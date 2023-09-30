@@ -8,5 +8,5 @@ RUN apt-get update && \
 
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["/usr/share/tomcat9/bin/catalina.sh", "run"]
 
