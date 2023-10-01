@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN apt update
+RUN apt-get update && apt-get install -y wget
 RUN apt install maven -y
 RUN apt install openjdk-11-jdk -y
 RUN apt install git -y
