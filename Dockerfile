@@ -1,12 +1,15 @@
 FROM ubuntu:18.04
 RUN apt update
-RUN apt install tomcat9 -y
 RUN apt install maven -y
 RUN apt install openjdk-11-jdk -y
 RUN apt install git -y
+RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
+RUN tar -zxvf apache-tomcat-9.0.48.tar.gz
+RUN mv apache-tomcat-9.0.48 /opt/tomcat
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
 RUN git clone https://github.com/yankils/hello-world.git
 RUN cd hello-world/ && mvn package
-RUN cp hello-world/webapp/target/webapp.war /var/lib/tomcat9/webapps/
+RUN cp hello-world/webapp/target/webapp.war /opt/tomcat/webapps/
 EXPOSE 8080
-CMD ["/usr/share/tomcat9/bin/catalina.sh", "run"]
-
+CMD ["catalina.sh", "run"]
